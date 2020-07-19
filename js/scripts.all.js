@@ -29,9 +29,12 @@ $(document).ready(function(){
 
 
     //map animation
+    var prem = false;
     $(window).on('scroll', function(){
+        perm  = true;
         let offsetY = $('.ukraine-map-section__block').offset().top - $(window).scrollTop();
-        if (offsetY < 400){
+        if (offsetY < 400 ){
+            $('.ukraine-map-section__block__point').removeClass('active');
             $('.ukraine-map-section__block__point-kyiv').addClass('active');
         }
     })
