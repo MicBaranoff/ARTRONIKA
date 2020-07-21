@@ -36,13 +36,24 @@ $(document).ready(function(){
             let offsetY = $('.ukraine-map-section__block').offset().top - $(window).scrollTop();
             if (offsetY < 400 ){
                 $('.ukraine-map-section__block__point').removeClass('active');
-                $('.ukraine-map-section__block__point-kyiv').addClass('active');
+                $('.ukraine-map-section__block__point-vinnitsa').addClass('active');
             }
         })
     }
    
     //END map animation
 
+    // langs scripts 
+
+    $('.header-block__langs__box a').click(function(e){
+        e.preventDefault();
+        $('.header-block__langs__box a').removeClass('active');
+        $(this).addClass('active');
+        $(this).insertBefore('.header-block__langs__box a');
+        $(this).remove();
+
+    });
+    //END langs scripts 
 
     //fix header script
     if($(window).width() >= 960){
@@ -82,6 +93,36 @@ $(document).ready(function(){
         }
       });
 
+
+      $('body').on("blur" , '.textt', function(e){
+        let textt = $(this).val();
+        if (textt.length < 3) {
+          $(this).parent().find('span').fadeIn();
+            $(this).addClass('error');
+        } else {
+            $(this).parent().find('span').fadeOut();
+            $(this).removeClass('error');
+        }
+      });
+
     //END form validation
+
+
+    //page active
+
+    (function($){
+
+        //find active url in menu
+        var $curURL = document.location.href;
+        $('.header-block__nav ul li').each(function() {
+            var $linkHref = $(this).find('a').attr('href');
+            if ($curURL.indexOf($linkHref) > -1) {
+                $(this).addClass('active');
+            }
+        });
+    
+    })(jQuery);
+
+    //Wnd page active
 });
 },{}]},{},[1]);
